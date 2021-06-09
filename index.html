@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>LAB 2</title>
+</head>
+<body>
+<script type="text/javascript">
+    //Q1
+    //After 1s the function returns a value(<=1s)
+    //Invoke callback inside the setTimeout function
+    function getValue(callback) {
+        let value = 0;
+        setTimeout(function () {
+            value = 10;
+            callback(value);
+        }, 1000);
+    }
+    getValue(function (value) {
+        console.log(value);
+
+    })
+    let promise = new Promise(function (resolve, reject) {
+        resolve()
+        reject()
+
+    })
+
+    //Q5
+    //Return a promise
+    function getValue(){
+        let value = 0
+        //resolve makes the successful completion
+        //reject is for error
+        return new Promise( (resolve, reject) => {
+            setTimeout(function () {
+                value = 20;
+                resolve(value);
+            }, 1000);
+        })
+    }
+
+    //setTimeout does one time execution
+    function getNewValue(value) {
+        return new Promise( (resolve, reject) => {
+            setTimeout(function () {
+                resolve(value * 100);
+            }, 1000);
+        })
+    }
+
+    function setValue(value) {
+        return value + 1997;
+    }
+
+    //Promise chaining
+    getValue().then(function (value) {
+        return getNewValue(value)
+    }).then(function (value) {
+        return setValue(value);
+    }).then(function (value) {
+        console.log(value);
+
+    });
+
+    //Q4
+    //Async functions are suppose to return promises
+    async function print() {
+        let value = await getValue();
+      try{
+          value = await getNewValue(value);
+
+      }catch (error) {
+          return error;
+
+      }
+        value = setValue(value);
+        return value;
+
+    }
+
+    //Async and await are functions that wrapped around the promises.
+    print().then( (value) => console.log(value))
+
+    //Q2
+    function Vehicle(type) {
+        this.type = type;
+        Vehicle.VehicleCount++;
+    }
+
+    Vehicle.prototype.drive = function () {
+        console.log("Vehicle is driving");
+    };
+
+    Vehicle.VehicleCount = 0;
+
+    const vehicle = new Vehicle("car");
+    console.log(Vehicle.VehicleCount, vehicle.type);
+    vehicle.drive();
+
+    function Car(type) {
+        Vehicle.call(this, type);
+    }
+
+    Car.prototype = Object.create(Vehicle.prototype);
+    Car.prototype.constructor = Car;
+
+    Car.prototype.balanceWheels = function () {
+        console.log("Wheels are balanced");
+    };
+
+    const car = new Car("Toyota");
+    console.log(car.type);
+    car.balanceWheels();
+
+    // 4
+    const returnValue = () => {
+        let value = 100;
+        setTimeout(() => {
+            value = 200;
+            console.log(value);
+            return value;
+        });
+    };
+
+    (async function gettingValues() {
+        try {
+            const returnedValue = await returnValue();
+            console.log(returnedValue);
+        } catch (error) {
+            console.log(error);
+        }
+    })();
+
+    //Q5
+    class Vehicle {
+        static VehicleCount = 0;
+
+        constructor(type) {
+            // let type = something - this is private
+            // below are public
+            this.type = type;
+            Vehicle.VehicleCount++;
+        }
+        drive() {
+            console.log("Vehicle is driving");
+        }
+        static VehicleCount = 0;
+        // these will be called as a property not as a method
+        // getters and setters are acting as properties
+        get typeCombined() {
+            return this.type + " is Good";
+        }
+
+        set typeCombinedAgain(type) {
+            this.type = "Something else";
+            console.log(this.type);
+        }
+    }
+
+    const vehicle = new Vehicle("Car");
+    console.log(vehicle.type);
+    vehicle.drive();
+
+    class Car extends Vehicle {
+        balanceWheels() {
+            console.log("Wheels are balanced");
+        }
+    }
+
+    const car = new Car("Toyota");
+    console.log(car.type);
+    car.balanceWheels();
+    console.log(car.typeCombined);
+    car.typeCombinedAgain = this.type;
+
+
+</script>
+</body>
+</html>
