@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LAB 1</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    //Q1-Method1
+    function printHello(){
+    console.log("Hello World");
+    }
+    printHello();
+
+    //Q1-Method2
+    var printHello = function (){
+        console.log("Hello World");
+    }
+
+    printHello();
+
+    //Q2
+    var person = {
+        name: "Buddhi",
+        city: "Horana",
+        age: 23,
+        printName:function (){
+            return this.name;
+        }
+        //For printName property value is the function
+    }
+    console.log(person.printName());
+
+    //Q3
+    var vehicleName = "Toyota";
+
+    function printVehicleName(){
+        console.log(this.vehicleName);
+    }
+    //this keyword refers to it's execution content
+
+    var car={
+        vehicleName: "Prius",
+        getVehicleName: printVehicleName,
+    }
+
+    printVehicleName();
+    car.getVehicleName();
+    console.log(this.vehicleName);
+
+    //Q4
+    function taxCalculator(taxPercentage){
+        return function (amount){
+            return amount * taxPercentage;
+        }
+    }
+    //Nested function is accessing something outside and inside it's parent function
+    //(IIFE) - Immediately invoked function expression
+    // Function that runs soon as it is defined (outer function - taxCalc)
+    var calculator = taxCalculator(0.0);
+    console.log(calculator(2000));
+
+    //Q5
+    var apiURL = "https://jsonplaceholder.typicode.com/posts"; //Getting all posts
+
+    var userId = 3;
+    var apiSpecificURL = `https://jsonplaceholder.typicode.com/posts/${userId}`; //Getting specific post
+
+    fetch(apiURL)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(JSON.stringify(data));
+        })
+        .catch((error) => console.log(error));
+
+</script>
+</body>
+</html>
