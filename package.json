@@ -1,0 +1,19 @@
+{
+  "name": "af-lab5",
+  "version": "1.0.0",
+  "description": "First Node Project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GayashaBudddhi/SLIIT-AF-Labs.git"
+  },
+  "author": "Buddhi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GayashaBudddhi/SLIIT-AF-Labs/issues"
+  },
+  "homepage": "https://github.com/GayashaBudddhi/SLIIT-AF-Labs#readme"
+}
