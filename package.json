@@ -1,0 +1,27 @@
+{
+  "name": "af-lab6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GayashaBudddhi/SLIIT-AF-Labs.git"
+  },
+  "author": "Buddhi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GayashaBudddhi/SLIIT-AF-Labs/issues"
+  },
+  "homepage": "https://github.com/GayashaBudddhi/SLIIT-AF-Labs#readme",
+  "dependencies": {
+    "@koa/router": "^10.0.0",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-static": "^5.0.0",
+    "mongodb": "^3.6.9",
+    "uuid": "^8.3.2"
+  }
+}
